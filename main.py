@@ -59,7 +59,7 @@ async def get_data(api_key: str = Header(...)):
 
 
 
-@app.get("/adin_ai/get_data_by_startdate_enddate", tags=["adin.ai"])
+@app.get("/adin_ai/get_data_date_range_by_domain", tags=["adin.ai"])
 async def get_data_by_date(
     api_key: str = Header(...),
     start_date: str = Query(
@@ -83,17 +83,17 @@ async def get_data_by_date(
     except InvalidAPIKeyError as api_key_error:
         raise HTTPException(status_code=401, detail="Invalid API key. Please provide a valid API key.")
     except psycopg2.Error as db_error:
-        log_to_db('ERROR', str(db_error), "adin api get_data_by_date")
+        log_to_db('ERROR', str(db_error), "adin api get_data_date_range_by_domain")
         raise HTTPException(status_code=500, detail="Database error.")
     except Exception as e:
-        log_to_db('ERROR', str(e), "adin api get_data_by_date")
+        log_to_db('ERROR', str(e), "adin api get_data_date_range_by_domain")
         raise HTTPException(status_code=500, detail="Unexpected error.")
 
 
 
 
 
-@app.get("/adin_ai/get_data_by_createdate", tags=["adin.ai"])
+@app.get("/adin_ai/get_data_on_date", tags=["adin.ai"])
 async def get_data_by_date(
     api_key: str = Header(...),
     create_date: str = Query(
@@ -111,14 +111,14 @@ async def get_data_by_date(
     except InvalidAPIKeyError as api_key_error:
         raise HTTPException(status_code=401, detail="Invalid API key. Please provide a valid API key.")
     except psycopg2.Error as db_error:
-        log_to_db('ERROR', str(db_error), "adin api get_data_by_createdate")
+        log_to_db('ERROR', str(db_error), "adin api get_data_on_date")
         raise HTTPException(status_code=500, detail="Database error.")
     except Exception as e:
-        log_to_db('ERROR', str(e), "adin api get_data_by_createdate")
+        log_to_db('ERROR', str(e), "adin api get_data_on_date")
         raise HTTPException(status_code=500, detail="Unexpected error.")
 
 
-@app.get("/adin_ai/get_data_by_createdate_domainid", tags=["adin.ai"])
+@app.get("/adin_ai/get_data_by_date_and_domain", tags=["adin.ai"])
 async def get_data_by_date(
     api_key: str = Header(...),
     create_date: str = Query(
@@ -137,8 +137,8 @@ async def get_data_by_date(
     except InvalidAPIKeyError as api_key_error:
         raise HTTPException(status_code=401, detail="Invalid API key. Please provide a valid API key.")
     except psycopg2.Error as db_error:
-        log_to_db('ERROR', str(db_error), "adin api get_data_by_date")
+        log_to_db('ERROR', str(db_error), "adin api get_data_by_date_and_domain")
         raise HTTPException(status_code=500, detail="Database error.")
     except Exception as e:
-        log_to_db('ERROR', str(e), "adin api get_data_by_date")
+        log_to_db('ERROR', str(e), "adin api get_data_by_date_and_domain")
         raise HTTPException(status_code=500, detail="Unexpected error.")
