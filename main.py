@@ -11,16 +11,11 @@ import os
 # Load the .env file
 load_dotenv()
 
-tags_metadata = [
-    {
-        "name": "adin.ai",
-        "description": "Operations with users. The **login** logic is also here.",
-    }
-]
+
 
 ADIN_API_KEY=os.getenv('ADIN_API_KEY')
 
-app = FastAPI(openapi_tags=tags_metadata)
+app = FastAPI()
 db_helper = DBHelper()
 
 
